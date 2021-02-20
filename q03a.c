@@ -8,12 +8,13 @@ Crie um programa em C que demonstre uma hierarquia de processos com o comando fo
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <string.h>
-main(int argc, char *argv[]){
+
+int main(int argc, char *argv[]){
     int pid;
     int i;
     pid = fork();
     if (pid < 0) {
-        printf("Fork error\n");
+        printf("Vishh! Deu ruim\n");
         exit(1);
     }else{
         if (pid == 0) {
@@ -21,12 +22,12 @@ main(int argc, char *argv[]){
             //Filho gera Filho1
             pid2 = fork();
             if (pid2 < 0) {
-                printf("Fork error\n");
+                printf("Vishh! Deu ruim\n");
                 return(1);
             }else{
                 if (pid2 == 0) {
                     //sleep(1);
-                    write(1, "-> Filho1 ", 10);
+                    write(1, "-> Filho1", 10);
                     return(0);
                 }else{
                     write(1, "-> Filho ", 9);
@@ -34,10 +35,12 @@ main(int argc, char *argv[]){
                     return(0);
                 }
             }
-        }else {
+        }else{
             write(1, "Pai ", 4);
             wait(NULL);
+            printf(" -> FIM\n");
             return(0);
         }
     }
+    
 }
