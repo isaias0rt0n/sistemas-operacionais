@@ -17,16 +17,14 @@ int main(int argc, char *argv[]){
         printf("Vishh! Deu ruim\n");
         exit(1);
     }else{
-        if (pid == 0) {
+        if (pid == 0) { //código filho
             int pid2;
-            //Filho gera Filho1
-            pid2 = fork();
+            pid2 = fork(); //Filho gera Filho1
             if (pid2 < 0) {
                 printf("Vishh! Deu ruim\n");
                 return(1);
             }else{
                 if (pid2 == 0) {
-                    //sleep(1);
                     write(1, "-> Filho1", 10);
                     return(0);
                 }else{
