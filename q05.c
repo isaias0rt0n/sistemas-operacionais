@@ -29,7 +29,7 @@ o segundo é o valor da variávelcompartilhada "valor", que foi produzido aleato
 
 /*Diretivas*/
 #define QTD 4
-#define CONT 1000000
+#define CONT 100000
 int valor = 0;
 
 void *produtor(void *ard){ //recebe o id da thread produtor como parâmetro 
