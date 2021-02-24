@@ -61,8 +61,8 @@ void *consumidor(void *ard){ //recebe o id da thread consumidor como parâmetro
 
 int main(int argc, char* argv[]){
     /*Definindo os vetores de threads*/
-    pthread_t pro[QTD];
-    pthread_t con[QTD];
+    pthread_t pro[QTD]; //4 threads para produtores
+    pthread_t con[QTD]; //4 threads para consumidores
 
     int id; //id das threads
 
@@ -86,3 +86,19 @@ int main(int argc, char* argv[]){
 
     return 0;
 }
+
+/*---------------------------------------------- Respostas ----------------------------------------------*/
+
+//Por que alguns consumidores consumiram mais de uma vez em seguida o mesmo número?
+    /*===Como não há um controle de processos em execução e controle de acesso a região crítica, 
+        o escalonador troca de processos ocasionando incosistência nos valores va variável valor.===*/
+
+//Por que o consumidor consumiu um determinado número, mas o produtor só oproduziu depois?
+    /*===Novamente o problema da região crítica. O produtor recebeu o escalonador, produziu e pôs
+        o valor na variável de região crítica. Antes dele encerrar seu processo ele perde o escalonador
+        que é ganho pelo consumidor. Ele consome o valor da variável e monstra em tela. Depois o
+        escalonador volta para o produtor que mostra o valor em tela e so repois encerra seu processo ===*/
+
+//Tirando o fato de ser gerado números aleatórios, por que a execução sempre ocorre em ordem diferente?
+    /*=== Não há um controle de flxo entre os processos. Uma solução para esse problema é a ultilização
+        de semáfaros, para ter um controle da ordem de execução dos processos. ===*/
