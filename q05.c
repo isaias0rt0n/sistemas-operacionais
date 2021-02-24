@@ -22,6 +22,7 @@ o segundo é o valor da variávelcompartilhada "valor", que foi produzido aleato
 - Execute os threads algumas vezes, observe as saídas e responda as observações:
 */
 
+//Includes de Bibliotecas necessárias
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -31,28 +32,28 @@ o segundo é o valor da variávelcompartilhada "valor", que foi produzido aleato
 #define CONT 1000000
 int valor = 0;
 
-void *produtor(void *ard){
+void *produtor(void *ard){ //recebe o id da thread produtor como parâmetro 
     int *id = (int *) ard; //Cast do valor recebido para inteiro
     int cont = 0;
 
-    while(cont < CONT){
-        if(valor == 0){
-            valor = ( rand() % 100 );
-            printf("Produtor %d produziu %d\n", *id, valor);
+    while(cont < CONT){ //processo de obtenção do valor deve estar dentro do loop do produtor
+        if(valor == 0){ //O produtor só pode produzir um número se essa variável tiver sido consumida (valor=0)
+            valor = ( rand() % 100 ); //Valor recebe um numero onde: 0 < valor < 100
+            printf("Produtor %d produziu %d\n", *id, valor); //Após produzir esse número deve apresentar a mensagem
         }
         cont++;
     }
 }
 
-void *consumidor(void *ard){
-    int *id = (int *) ard;
+void *consumidor(void *ard){ //recebe o id da thread consumidor como parâmetro
+    int *id = (int *) ard; //Cast do valor recebido para inteiro
 
-    int cont = 0;
+    int cont = 0; 
 
-    while(cont < CONT){
-        if(valor != 0){
+    while(cont < CONT){ //processo de obtenção do valor deve estar dentro do loop do produtor
+        if(valor != 0){ //Caso a variável "valor" seja diferente de zero, então apresenta a mensagem
             printf("Consumidor %d consumiu %d\n", *id, valor);
-            valor = 0;
+            valor = 0; //alterar o valor da variável "valor" para zero 
         }
         cont++;
     }
@@ -63,7 +64,7 @@ int main(int argc, char* argv[]){
     pthread_t pro[QTD];
     pthread_t con[QTD];
 
-    int id;
+    int id; //id das threads
 
     for(id = 0; id < QTD; id++){
         // criando 4 threads e passando id como parametro para a função produtor
@@ -81,7 +82,7 @@ int main(int argc, char* argv[]){
         pthread_join(con[i], NULL);
     }
 
-    printf("FIM\n");
+    printf("\nFIM\n"); /*Para saber o FIM do main*/
 
     return 0;
 }
