@@ -31,9 +31,32 @@ o segundo é o valor da variávelcompartilhada "valor", que foi produzido aleato
 #define CONT 1000000
 int valor = 0;
 
-void *produtor(void *ard){}
+void *produtor(void *ard){
+    int *id = (int *) ard; //Cast do valor recebido para inteiro
+    int cont = 0;
 
-void *consumidor(void *ard){}
+    while(cont < CONT){
+        if(valor == 0){
+            valor = ( rand() % 100 );
+            printf("Produtor %d produziu %d\n", *id, valor);
+        }
+        cont++;
+    }
+}
+
+void *consumidor(void *ard){
+    int *id = (int *) ard;
+
+    int cont = 0;
+
+    while(cont < CONT){
+        if(valor != 0){
+            printf("Consumidor %d consumiu %d\n", *id, valor);
+            valor = 0;
+        }
+        cont++;
+    }
+}
 
 int main(int argc, char* argv[]){
     /*Definindo os vetores de threads*/
@@ -44,7 +67,7 @@ int main(int argc, char* argv[]){
 
     for(id = 0; id < QTD; id++){
         // criando 4 threads e passando id como parametro para a função produtor
-        pthread_create(&pro[id], NULL, consumidor, &id); 
+        pthread_create(&pro[id], NULL, produtor, &id); 
     }
 
     for(id = 0; id < QTD; id++){
@@ -52,11 +75,13 @@ int main(int argc, char* argv[]){
         pthread_create(&con[id], NULL, consumidor, &id); 
     }
 
-    //Laço para aguardas as thread executarem
+    //Laço para aguardas as threads executarem
     for(int i=0; i<QTD; i++){
         pthread_join(pro[i], NULL);
         pthread_join(con[i], NULL);
     }
+
+    printf("FIM\n");
 
     return 0;
 }
