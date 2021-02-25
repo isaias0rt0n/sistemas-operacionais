@@ -39,7 +39,7 @@ void *soma_taylor(void *ard){
 
         cont += 2;
     }
-    printf("%f\n", termo_soma);
+    //printf("%f\n", termo_soma);
 }
 
 void *subtracao_taylor(void *ard){
@@ -57,7 +57,7 @@ void *subtracao_taylor(void *ard){
 
         cont += 2;
     }
-    printf("%f\n", termo_subtracao);
+    //printf("%f\n", termo_subtracao);
     
 }
 
