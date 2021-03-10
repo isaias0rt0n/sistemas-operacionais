@@ -15,6 +15,7 @@ Trabalho realizado na disciplina de sistemas Operacionais, visando abordar conce
 
 > - Crie um programa em C que demonstre uma hierarquia de processos com o comando fork( ) -> Pai -> Filho ->Filho1
 > - Crie um programa que receba parâmetros na chamada do main e mostre na saída metade dos parâmetros pelo processo pai e a outra metade pelo processo filho
+
 > - Crie um programa em C que apresente duas funções para threads (produtor e consumidor), nesse devem ser criadas a quantidade de threads definidas por uma variável global QTD e utilizar outra variável global chamada “valor”. O produtor só pode produzir um número se essa variável tiver sido consumida (valor=0), quando ele for produzir é atribuído um número aleatório a variável “valor”. O consumido só pode consumir um número, se ele já tiver sido produzido (valor≠0), quando ele consome é atribuído valor=0. O programa deve seguir as seguintes especificações: (comentário do código)
 
 > - Implemente uma simulação para os algoritmos de escalonamento SJF e Round Robin em C. Em sua implementação o usuário deve fornecer a quantidade de processos que estão na fila para serem executados, a ordem de chegada e o tempo de execução de cada processo. Durante a execução deve ser informado ao usuário qual o processo que está executando e esperado o tempo de cada processo por segundo. Por exemplo, se um processo A demora 5 segundos, deve ser informado que ele está sendo trabalhado e esperado o tempo de execução deste para poder iniciar o próximo, para isso utilize um temporizador em seu algoritmo.
